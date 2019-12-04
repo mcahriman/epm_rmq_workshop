@@ -1,0 +1,8 @@
+FROM node:latest
+
+COPY RabbitMQSimulator /opt/simulator
+WORKDIR /opt/simulator/
+RUN npm install
+RUN cp config.sample.json config.json
+ENTRYPOINT node app.js
+

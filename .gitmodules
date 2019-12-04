@@ -1,0 +1,6 @@
+[submodule "rabbitmq-tutorials"]
+	path = rabbitmq-tutorials
+	url = https://github.com/rabbitmq/rabbitmq-tutorials.git
+[submodule "RabbitMQSimulator"]
+	path = RabbitMQSimulator
+	url = https://github.com/RabbitMQSimulator/RabbitMQSimulator.git
