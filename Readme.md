@@ -1,19 +1,21 @@
-# RabbitMQ installation
+# RabbitMQ Workshop
 
-Official site: https://www.rabbitmq.com/
-Tutorials: https://www.rabbitmq.com/getstarted.html
+##meta
+- [Google slides of workshop presentation](https://docs.google.com/presentation/d/1YXJe5XTKJ4O6vXnWWdEi6U-5W6D4_dmGRDeftByhk6s/edit?usp=sharing)
+- [AMQP concepts](https://www.rabbitmq.com/tutorials/amqp-concepts.html)
+- [Official site](https://www.rabbitmq.com/)
+- [Tutorials this workshop is based on](https://www.rabbitmq.com/getstarted.html)
+- [RabbitMQ Simulator](https://github.com/RabbitMQSimulator/RabbitMQSimulator)
+- [RabbitMQ Installation guide](https://www.rabbitmq.com/download.html)
+- [Official docker images](https://hub.docker.com/_/rabbitmq)
+- [AMQP protocol reference](https://www.rabbitmq.com/amqp-0-9-1-reference.html)
 
-RabbitMQ Simulator: https://github.com/RabbitMQSimulator/RabbitMQSimulator
+# Steps for reproducible environment
 
-Installation guide: https://www.rabbitmq.com/download.html
-Docker image: https://hub.docker.com/_/rabbitmq
+1) Run Broker, manually installed or dockerized
+2) PHP: Composer install, prepare codebase
+3) Install submodules
 
-
-# Steps
-
-- Run Broker, manually installed or dockerized
-- PHP: Composer install, prepare codebase
-- Install submodules
 ``` 
 git submodule init
 git submodule install
@@ -28,8 +30,6 @@ php send.php
 sudo rabbitmqctl list_queues
 php receive.php
 ```
-If in doubt - check the protocol reference
-https://www.rabbitmq.com/amqp-0-9-1-reference.html
 
 
 ```php
@@ -47,10 +47,56 @@ queue_declare
 ) 
 ```
 
+```
+basic_publish
+```
+
+```
+basic_consume
+```
+
+
+[tutiorial homepage](https://www.rabbitmq.com/tutorials/tutorial-one-php.html)
+
 ## Example 2: Worker queue
 
-//TODO: dockerize
+### Direct queue:
+- producer -> routing_key -> queue
+- load balancing between customers subscribed to single queue
 
-Please notice the round robin nature by default
+### QOS
+```php
 
-## Example 3:
+basic_qos(
+            $prefetch_size, // size of prefetch windoe
+            $prefetch_count, // in count of messages
+            $a_global, // global qos update, why need this anyway
+)
+```
+
+[tutorial homepage](https://www.rabbitmq.com/tutorials/tutorial-two-php.html)
+
+
+## Example 3: Topics
+
+files:
+- emit_log_topic.php
+
+To receive all the logs:
+
+`php receive_logs_topic.php "#"`
+
+To receive all logs from the facility "kern":
+
+`php receive_logs_topic.php "kern.*"`
+
+Or if you want to hear only about "critical" logs:
+
+`php receive_logs_topic.php "*.critical"`
+
+Multiple bindings possible
+
+
+## Example 4: RPC
+
+[tutorial homepage](https://www.rabbitmq.com/tutorials/tutorial-six-php.html)
