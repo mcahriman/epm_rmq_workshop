@@ -1,6 +1,6 @@
 # RabbitMQ Workshop
 
-##meta
+## Useful links
 - [Google slides of workshop presentation](https://docs.google.com/presentation/d/1YXJe5XTKJ4O6vXnWWdEi6U-5W6D4_dmGRDeftByhk6s/edit?usp=sharing)
 - [AMQP concepts](https://www.rabbitmq.com/tutorials/amqp-concepts.html)
 - [Official site](https://www.rabbitmq.com/)
@@ -100,3 +100,10 @@ Multiple bindings possible
 ## Example 4: RPC
 
 [tutorial homepage](https://www.rabbitmq.com/tutorials/tutorial-six-php.html)
+
+Files
+
+see correlation_id parameter, local and remote.  
+
+- rpc_client.php
+- rpc_server.php
