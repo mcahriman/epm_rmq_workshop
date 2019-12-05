@@ -18,7 +18,7 @@
 
 ``` 
 git submodule init
-git submodule install
+git submodule update    
 ```
 
 ## Example 1: Hello world
